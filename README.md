@@ -9,18 +9,18 @@
 
 ## Overview
 
-### What
+### What? 🤔
 
 A small set of utils to make [Angular Material Tables](https://material.angular.io/components/table) more generic.
 
-* Sorting based on column names, using dot notation
-* Filtering based on column names, using dot notation
+* Sorting based on column names, with nested property support using dot notation
+* Filtering based on column names, with nested property support using dot notation
 * Sorts string values case-insensitive
-* Use filtering only for displayed columns 
-* Persisted sorting
-* Reactive data source
+* Filter only on displayed columns 
+* Persisted sorting using SessionStorage
+* Reactive data source for RxJS Observables
 
-### Why
+### Why? 🤷‍♂️
 
 When using Angular Material Table, you may need more advanced sorting and filtering behaviour. That's why you usually end up with a lot of boilerplate code.
 
