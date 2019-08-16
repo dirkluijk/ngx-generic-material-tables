@@ -20,8 +20,7 @@
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": [
-              "projects/generic-material-tables/tsconfig.lib.json",
-              "projects/generic-material-tables/tsconfig.spec.json"
+              "projects/generic-material-tables/tsconfig.lib.json"
             ],
             "exclude": [
               "**/node_modules/**"
@@ -130,8 +129,7 @@
           "options": {
             "tsConfig": [
               "projects/demo/tsconfig.app.json",
-              "projects/demo/tsconfig.spec.json",
-              "projects/demo/e2e/tsconfig.json"
+              "projects/demo/tsconfig.spec.json"
             ],
             "exclude": [
               "**/node_modules/**"

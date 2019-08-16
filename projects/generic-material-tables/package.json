@@ -1,7 +1,7 @@
 {
-  "name": "@dirkluijk/generic-material-tables",
+  "name": "@dirkluijk/ngx-generic-material-tables",
   "version": "0.0.1",
-  "description": "Utils for generic Material tables",
+  "description": "Utils for generic Angular Material tables",
   "author": "Dirk Luijk <mail@dirkluijk.nl>",
   "license": "MIT",
   "private": false,

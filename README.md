@@ -2,9 +2,9 @@
 
 > Sorting and filtering utils to create generic Angular Material tables
 
-[![NPM version](http://img.shields.io/npm/v/@dirkluijk/generic-material-tables.svg?style=flat-square)](https://www.npmjs.com/package/@dirkluijk/generic-material-tables)
-[![NPM downloads](http://img.shields.io/npm/dm/@dirkluijk/generic-material-tables.svg?style=flat-square)](https://www.npmjs.com/package/@dirkluijk/generic-material-tables)
-[![Build status](https://img.shields.io/travis/dirkluijk/generic-material-tables.svg?style=flat-square)](https://travis-ci.org/dirkluijk/generic-material-tables)
+[![NPM version](http://img.shields.io/npm/v/@dirkluijk/ngx-generic-material-tables.svg?style=flat-square)](https://www.npmjs.com/package/@dirkluijk/ngx-generic-material-tables)
+[![NPM downloads](http://img.shields.io/npm/dm/@dirkluijk/ngx-generic-material-tables.svg?style=flat-square)](https://www.npmjs.com/package/@dirkluijk/ngx-generic-material-tables)
+[![Build status](https://img.shields.io/travis/dirkluijk/ngx-generic-material-tables.svg?style=flat-square)](https://travis-ci.org/dirkluijk/generic-material-tables)
 [![All Contributors](https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square)](#contributors-)
 
 ## Overview
@@ -31,13 +31,13 @@ This library provides some utils to use consistent sorting and filtering behavio
 ##### npm
 
 ```
-npm install @dirkluijk/generic-material-tables --save-dev
+npm install @dirkluijk/ngx-generic-material-tables --save-dev
 ```
 
 ##### yarn
 
 ```
-yarn add @dirkluijk/generic-material-tables --dev
+yarn add @dirkluijk/ngx-generic-material-tables --dev
 ```
 
 ## Usage 🕹
@@ -51,7 +51,7 @@ The `GenericTableDataSource` allows you to use "dot notation" for your columns a
 
 ```typescript
 import { Component } from '@angular/core';
-import { GenericTableDataSource } from '@dirkluijk/generic-material-tables'
+import { GenericTableDataSource } from '@dirkluijk/ngx-generic-material-tables'
 
 @Component({
     template: `
@@ -122,7 +122,7 @@ Even more awesome is the reactive version of the `GenericTableDataSource`:
 * Automatically reacts to changes
 
 ```typescript
-import { ReactiveGenericTableDataSource } from '@dirkluijk/generic-material-tables'
+import { ReactiveGenericTableDataSource } from '@dirkluijk/ngx-generic-material-tables'
 
 const myDataSource = new ReactiveGenericTableDataSource<YourRecordEntity>(
   displayedColumns$,
@@ -140,7 +140,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
 <!-- markdownlint-disable -->
 <table>
   <tr>
-    <td align="center"><a href="https://github.com/dirkluijk"><img src="https://avatars2.githubusercontent.com/u/2102973?v=4" width="100px;" alt="Dirk Luijk"/><br /><sub><b>Dirk Luijk</b></sub></a><br /><a href="https://github.com/dirkluijk/@dirkluijk/generic-material-tables/commits?author=dirkluijk" title="Code">💻</a> <a href="https://github.com/dirkluijk/@dirkluijk/generic-material-tables/commits?author=dirkluijk" title="Documentation">📖</a></td>
+    <td align="center"><a href="https://github.com/dirkluijk"><img src="https://avatars2.githubusercontent.com/u/2102973?v=4" width="100px;" alt="Dirk Luijk"/><br /><sub><b>Dirk Luijk</b></sub></a><br /><a href="https://github.com/dirkluijk/@ngx-dirkluijk/generic-material-tables/commits?author=dirkluijk" title="Code">💻</a> <a href="https://github.com/dirkluijk/@dirkluijk/generic-material-tables/commits?author=dirkluijk" title="Documentation">📖</a></td>
   </tr>
 </table>
 

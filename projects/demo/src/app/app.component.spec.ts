@@ -1,7 +1,7 @@
 import { MatTableModule } from '@angular/material';
 import { ReactiveFormsModule } from '@angular/forms';
 import { createTestComponentFactory, Spectator } from '@netbasal/spectator';
-import { SortModule } from '@dirkluijk/generic-material-tables';
+import { SortModule } from '@dirkluijk/ngx-generic-material-tables';
 import { of } from 'rxjs';
 import { SESSION_STORAGE } from 'ngx-webstorage-service';
 

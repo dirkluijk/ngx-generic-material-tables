@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { of } from 'rxjs';
-import { GenericTableDataSource, ReactiveGenericTableDataSource } from '@dirkluijk/generic-material-tables';
+import { GenericTableDataSource, ReactiveGenericTableDataSource } from '@dirkluijk/ngx-generic-material-tables';
 
 import { Person, PersonService } from './person-service';
 
