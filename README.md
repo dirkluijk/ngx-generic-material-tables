@@ -1,4 +1,4 @@
-# Generic Angular Material Tables
+# Generic Angular Material Tables 🚀
 
 > Sorting and filtering utils to create generic Angular Material tables
 
