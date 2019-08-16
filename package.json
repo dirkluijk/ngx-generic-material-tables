@@ -1,15 +1,21 @@
 {
-  "name": "generic-material-data-source",
-  "version": "0.0.0",
+  "name": "@dirkluijk/generic-material-tables",
+  "description": "Utils for generic Angular Material tables",
+  "author": "Dirk Luijk <mail@dirkluijk.nl>",
+  "license": "MIT",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
-    "build": "ng build",
-    "test": "ng test",
+    "commit": "git-cz",
+    "start": "ng serve demo",
+    "build": "ng build && yarn copy:readme",
+    "test": "ng test demo",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "contributors:add": "all-contributors add",
+    "contributors:generate": "all-contributors generate",
+    "copy:readme": "cp README.md dist/generic-material-tables",
+    "release": "cd projects/generic-material-tables && standard-version --infile ../../CHANGELOG.md && cd .. && yarn build"
   },
-  "private": true,
+  "private": false,
   "dependencies": {
     "@angular/animations": "~8.2.0",
     "@angular/common": "~8.2.0",
@@ -23,14 +29,31 @@
     "tslib": "^1.10.0",
     "zone.js": "~0.9.1"
   },
+  "peerDependencies": {
+    "@angular/cdk": "^8.0.0",
+    "@angular/material": "^8.0.0",
+    "ngx-webstorage-service": "^4.0.0"
+  },
   "devDependencies": {
+    "@angular-devkit/build-angular": "~0.802.2",
+    "@angular-devkit/build-ng-packagr": "~0.802.2",
+    "@angular/cdk": "^8.1.3",
     "@angular/cli": "~8.2.0",
     "@angular/compiler-cli": "~8.2.0",
     "@angular/language-service": "~8.2.0",
-    "@types/node": "~8.9.4",
+    "@angular/material": "^8.1.3",
+    "@commitlint/cli": "^8.1.0",
+    "@commitlint/config-conventional": "^8.1.0",
+    "@dscheerens/tslint-presets": "^6.0.0",
+    "@netbasal/spectator": "^3.12.0",
     "@types/jasmine": "~3.3.8",
     "@types/jasminewd2": "~2.0.3",
+    "@types/node": "~8.9.4",
+    "all-contributors-cli": "^6.8.1",
     "codelyzer": "^5.0.0",
+    "commitizen": "^4.0.3",
+    "cz-conventional-changelog": "^3.0.2",
+    "husky": "^3.0.3",
     "jasmine-core": "~3.4.0",
     "jasmine-spec-reporter": "~4.2.1",
     "karma": "~4.1.0",
@@ -38,9 +61,23 @@
     "karma-coverage-istanbul-reporter": "~2.0.1",
     "karma-jasmine": "~2.0.1",
     "karma-jasmine-html-reporter": "^1.4.0",
+    "ng-packagr": "^5.3.0",
+    "ngx-webstorage-service": "^4.0.1",
     "protractor": "~5.4.0",
+    "standard-version": "^7.0.0",
     "ts-node": "~7.0.0",
+    "tsickle": "^0.36.0",
     "tslint": "~5.15.0",
     "typescript": "~3.5.3"
+  },
+  "config": {
+    "commitizen": {
+      "path": "cz-conventional-changelog"
+    }
+  },
+  "husky": {
+    "hooks": {
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
   }
 }

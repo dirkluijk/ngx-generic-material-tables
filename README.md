@@ -1,27 +1,151 @@
-# GenericMaterialDataSource
+# Generic Angular Material Tables
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.2.0.
+> Sorting and filtering utils to create generic Angular Material tables
 
-## Development server
+[![NPM version](http://img.shields.io/npm/v/@dirkluijk/generic-material-tables.svg?style=flat-square)](https://www.npmjs.com/package/@dirkluijk/generic-material-tables)
+[![NPM downloads](http://img.shields.io/npm/dm/@dirkluijk/generic-material-tables.svg?style=flat-square)](https://www.npmjs.com/package/@dirkluijk/generic-material-tables)
+[![Build status](https://img.shields.io/travis/dirkluijk/generic-material-tables.svg?style=flat-square)](https://travis-ci.org/dirkluijk/generic-material-tables)
+[![All Contributors](https://img.shields.io/badge/all_contributors-2-orange.svg?style=flat-square)](#contributors-)
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+## Overview
 
-## Code scaffolding
+### What
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+A small set of utils to make [Angular Material Tables](https://material.angular.io/components/table) more generic.
 
-## Build
+* Sorting based on column names, using dot notation
+* Filtering based on column names, using dot notation
+* Sorts string values case-insensitive
+* Use filtering only for displayed columns 
+* Persisted sorting
+* Reactive data source
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+### Why
 
-## Running unit tests
+When using Angular Material Table, you may need more advanced sorting and filtering behaviour. That's why you usually end up with a lot of boilerplate code.
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+This library provides some utils to use consistent sorting and filtering behaviour for all your tables.
 
-## Running end-to-end tests
+## Installation 🌩
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+##### npm
 
-## Further help
+```
+npm install @dirkluijk/generic-material-tables --save-dev
+```
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+##### yarn
+
+```
+yarn add @dirkluijk/generic-material-tables --dev
+```
+
+## Usage 🕹
+
+### GenericTableDataSource
+
+The `GenericTableDataSource` allows you to use "dot notation" for your columns and benefit from the following features:
+
+* Only filter on the displayed columns (which you need to pass to it), using the dot notation
+* Use the sortable columns based on the values accessed using the dot notation
+
+```typescript
+import { Component } from '@angular/core';
+import { GenericTableDataSource } from '@dirkluijk/generic-material-tables'
+
+@Component({
+    template: `
+      <table mat-table [dataSource]="genericDataSource" matSort gmtApplyMatSort>
+        <ng-container matColumnDef="name">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Name</th>
+          <td mat-cell *matCellDef="let row">
+              {{ row.name }}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="foo.bar">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Foo Bar</th>
+          <td mat-cell *matCellDef="let row">
+            {{ row.foo.bar }}
+          </td>>
+        </ng-container>
+          
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+    `
+})
+export class MyComponent {
+    public displayedColumns = ['name', 'foo.bar'];
+    public genericDataSource = new GenericTableDataSource<YourRecordEntity>(this.displayedColumns, [/** your data */]);
+}
+``` 
+
+### Apply `MatSort` automatically
+
+Use the `gmtApplyMatSort` to automatically register the `MatSort` on the data source.
+
+```html
+<table mat-table [dataSource]="genericDataSource" matSort gmtApplyMatSort>
+  <!-- ...  -->
+</table>
+```
+
+This allows you to omit the following code: 
+
+```typescript
+ViewChild(MatSort, {static: true}) sort: MatSort; // not needed anymore!
+
+ngOnInit(): void {
+  this.dataSource.sort = this.sort; // not needed anymore!
+}
+```
+
+### Persisted sorting
+
+You can persist the sorting actions to SessionStorage using the `gmtPersistedSort` directive.
+Just pass an additional identifier for your table in order to distinguish between multiple tables. 
+
+```html
+<table mat-table [dataSource]="genericDataSource" matSort gmtPersistedSort="my-table">
+  <!-- ...  -->
+</table>
+```
+
+That's it!
+
+### ReactiveGenericTableDataSource
+
+Even more awesome is the reactive version of the `GenericTableDataSource`:
+
+* Pass the displayed columns, table data and filter data as `Observable` stream
+* Automatically reacts to changes
+
+```typescript
+import { ReactiveGenericTableDataSource } from '@dirkluijk/generic-material-tables'
+
+const myDataSource = new ReactiveGenericTableDataSource<YourRecordEntity>(
+  displayedColumns$,
+  yourTableData$,
+  yourFilter$ // (optional)
+);
+```
+
+## Contributors ✨
+
+Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
+
+<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
+<!-- prettier-ignore-start -->
+<!-- markdownlint-disable -->
+<table>
+  <tr>
+    <td align="center"><a href="https://github.com/dirkluijk"><img src="https://avatars2.githubusercontent.com/u/2102973?v=4" width="100px;" alt="Dirk Luijk"/><br /><sub><b>Dirk Luijk</b></sub></a><br /><a href="https://github.com/dirkluijk/@dirkluijk/generic-material-tables/commits?author=dirkluijk" title="Code">💻</a> <a href="https://github.com/dirkluijk/@dirkluijk/generic-material-tables/commits?author=dirkluijk" title="Documentation">📖</a></td>
+  </tr>
+</table>
+
+<!-- markdownlint-enable -->
+<!-- prettier-ignore-end -->
+<!-- ALL-CONTRIBUTORS-LIST:END -->
+
+This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification. Contributions of any kind welcome!
