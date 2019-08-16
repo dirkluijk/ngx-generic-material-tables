@@ -7,7 +7,7 @@
       "node"
     ],
     "paths": {
-      "@dirkluijk/generic-material-tables": [
+      "@dirkluijk/ngx-generic-material-tables": [
         "projects/generic-material-tables/src/public-api.ts"
       ]
     }
