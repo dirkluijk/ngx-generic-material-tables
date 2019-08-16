@@ -9,10 +9,10 @@ import { Person, PersonService } from './person-service';
   selector: 'app-root',
   template: `
     <h1 class="mat-headline">Generic Material tables</h1>
-    
+
     <h2 class="mat-title">Filter</h2>
     <input type="text" [formControl]="filterControl">
-    
+
     <h2 class="mat-title">Generic table data source</h2>
     <table mat-table [dataSource]="genericDataSource" matSort gmtApplyMatSort gmtPersistedSort="table-1" class="table-1">
       <ng-container matColumnDef="id">
