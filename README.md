@@ -4,7 +4,7 @@
 
 [![NPM version](http://img.shields.io/npm/v/@dirkluijk/ngx-generic-material-tables.svg?style=flat-square)](https://www.npmjs.com/package/@dirkluijk/ngx-generic-material-tables)
 [![NPM downloads](http://img.shields.io/npm/dm/@dirkluijk/ngx-generic-material-tables.svg?style=flat-square)](https://www.npmjs.com/package/@dirkluijk/ngx-generic-material-tables)
-[![Build status](https://img.shields.io/travis/dirkluijk/ngx-generic-material-tables.svg?style=flat-square)](https://travis-ci.org/dirkluijk/generic-material-tables)
+[![Build status](https://img.shields.io/travis/dirkluijk/ngx-generic-material-tables.svg?style=flat-square)](https://travis-ci.org/dirkluijk/ngx-generic-material-tables)
 [![All Contributors](https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square)](#contributors-)
 
 ## Overview
