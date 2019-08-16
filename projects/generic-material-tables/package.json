@@ -1,0 +1,12 @@
+{
+  "name": "@dirkluijk/generic-material-tables",
+  "version": "0.0.0",
+  "description": "Utils for generic Material tables",
+  "author": "Dirk Luijk <mail@dirkluijk.nl>",
+  "license": "MIT",
+  "peerDependencies": {
+    "@angular/cdk": "^8.0.0",
+    "@angular/material": "^8.0.0",
+    "ngx-webstorage-service": "^4.0.0"
+  }
+}
