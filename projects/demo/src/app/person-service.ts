@@ -1,5 +1,5 @@
-import { Observable, of } from 'rxjs';
 import { Injectable } from '@angular/core';
+import { Observable, of } from 'rxjs';
 import { delay } from 'rxjs/operators';
 
 export interface Person {
