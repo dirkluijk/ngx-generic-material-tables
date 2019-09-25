@@ -14,7 +14,7 @@ import { Person, PersonService } from '../person-service';
 export class ReactiveTableComponent {
   public readonly filterControl = new FormControl('');
 
-  public readonly displayedColumns = ['id', 'name', 'vehicle.number'];
+  public readonly displayedColumns = ['id', 'name', 'vehicle.number', 'budget'];
 
   public readonly dataSource = new ReactiveGenericTableDataSource<Person>(
     of(this.displayedColumns),
