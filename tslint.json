@@ -3,6 +3,13 @@
   "rules": {
     "linebreak-style": false,
     "no-implicit-dependencies": false,
-    "strict-indent-size": [true, 2]
+    "strict-indent-size": [true, 2],
+    "variable-name": [
+      true,
+      "check-format",
+      "allow-pascal-case",
+      "ban-keywords",
+      "allow-leading-underscore"
+    ]
   }
 }

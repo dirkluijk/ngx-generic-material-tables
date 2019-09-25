@@ -19,6 +19,7 @@ A small set of utils to make [Angular Material Tables](https://material.angular.
 * Filter only on displayed columns 
 * Persisted sorting using SessionStorage
 * Reactive data source for RxJS Observables
+* Reloading functionality (for reactive data sources)
 
 ### Why? 🤷‍♂️
 
@@ -120,6 +121,9 @@ Even more awesome is the reactive version of the `GenericTableDataSource`:
 
 * Pass the displayed columns, table data and filter data as `Observable` stream
 * Automatically reacts to changes
+* Provides `reload()` functionality
+* Provides `loading`/`success`/`failed` static properties
+* Provides `loading$`/`success$`/`failed$` Observable properties
 
 ```typescript
 import { ReactiveGenericTableDataSource } from '@dirkluijk/ngx-generic-material-tables'
@@ -129,6 +133,8 @@ const myDataSource = new ReactiveGenericTableDataSource<YourRecordEntity>(
   yourTableData$,
   yourFilter$ // (optional)
 );
+
+myDataSource.reload();
 ```
 
 ## Contributors ✨
