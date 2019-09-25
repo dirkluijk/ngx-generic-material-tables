@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { delay } from 'rxjs/operators';
+import { delay, tap } from 'rxjs/operators';
 
 export interface Person {
   id: string;
@@ -32,7 +32,9 @@ export class PersonService {
         }
       }
     ]).pipe(
-      delay(300)
+      // tslint:disable-next-line:no-console
+      tap(() => console.log('Getting persons...')),
+      delay(400),
     );
   }
 }

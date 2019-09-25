@@ -7,11 +7,11 @@
 import { readProperty } from '../internals/read-property.fn';
 
 export function genericSortingAccessor<T>(data: T, sortHeaderId: string): string | number {
-    const value = readProperty(data, sortHeaderId);
+  const value = readProperty(data, sortHeaderId);
 
-    if (typeof value === 'string') {
-        return value.toLocaleLowerCase();
-    }
+  if (typeof value === 'string') {
+    return value.toLocaleLowerCase();
+  }
 
-    return value || '';
+  return value || '';
 }

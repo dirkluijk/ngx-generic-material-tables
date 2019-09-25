@@ -8,10 +8,10 @@ import { genericSortingAccessor } from '../sorting/generic-sorting-accessor.fn';
  * properties, with support for dot notation.
  */
 export class GenericTableDataSource<T> extends MatTableDataSource<T> {
-    constructor(filterColumns: Iterable<string>, initialData?: T[]) {
-        super(initialData);
+  constructor(filterColumns: Iterable<string>, initialData?: T[]) {
+    super(initialData);
 
-        this.sortingDataAccessor = genericSortingAccessor;
-        this.filterPredicate = createGenericFilterPredicate(filterColumns);
-    }
+    this.sortingDataAccessor = genericSortingAccessor;
+    this.filterPredicate = createGenericFilterPredicate(filterColumns);
+  }
 }

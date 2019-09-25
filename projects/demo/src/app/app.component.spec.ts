@@ -1,21 +1,39 @@
-import { MatTableModule } from '@angular/material';
+import {
+  MatButtonModule,
+  MatFormFieldModule,
+  MatIconModule,
+  MatInputModule,
+  MatProgressSpinnerModule,
+  MatTableModule
+} from '@angular/material';
 import { ReactiveFormsModule } from '@angular/forms';
-import { createTestComponentFactory, Spectator } from '@netbasal/spectator';
+import { createComponentFactory, Spectator } from '@ngneat/spectator';
 import { SortModule } from '@dirkluijk/ngx-generic-material-tables';
 import { of } from 'rxjs';
+import { tap } from 'rxjs/operators';
 import { SESSION_STORAGE } from 'ngx-webstorage-service';
 
 import { AppComponent } from './app.component';
 import { Person, PersonService } from './person-service';
+import { ReactiveTableComponent } from './reactive-table/reactive-table.component';
+import { GenericTableComponent } from './generic-table/generic-table.component';
 
 describe('AppComponent', () => {
-  const createComponent = createTestComponentFactory({
+  let getDataSpy: jasmine.Spy;
+
+  const createComponent = createComponentFactory({
     component: AppComponent,
     imports: [
       MatTableModule,
       SortModule,
-      ReactiveFormsModule
+      ReactiveFormsModule,
+      MatProgressSpinnerModule,
+      MatButtonModule,
+      MatIconModule,
+      MatFormFieldModule,
+      MatInputModule
     ],
+    declarations: [GenericTableComponent, ReactiveTableComponent],
     providers: [
       {
         provide: PersonService,
@@ -45,7 +63,7 @@ describe('AppComponent', () => {
                 number: 'aa-bb-cc'
               }
             }
-          ])
+          ]).pipe(tap(() => getDataSpy()))
         }
       }
     ]
@@ -53,54 +71,53 @@ describe('AppComponent', () => {
 
   let spectator: Spectator<AppComponent>;
 
-  beforeEach(async () => {
+  beforeEach(() => {
+    getDataSpy = jasmine.createSpy();
     spectator = createComponent();
-    // await spectator.fixture.whenStable();
-    // spectator.detectChanges();
   });
 
   afterEach(() => spectator.get(SESSION_STORAGE).clear());
 
-  ['.table-1', '.table-2'].forEach((table) => {
+  ['app-generic-table', 'app-reactive-table'].forEach((table) => {
     describe(table, () => {
       it('should sort all columns', () => {
         // id ascending
-        spectator.click(spectator.$$(`${ table } th.sort-id`));
+        spectator.click(spectator.query(`${ table } th.sort-id`, {root: true})!);
 
         expect(`${ table } tr:first-child td:nth-of-type(1)`).toHaveText('1');
         expect(`${ table } tr:first-child td:nth-of-type(2)`).toHaveText('John Doe');
         expect(`${ table } tr:first-child td:nth-of-type(3)`).toHaveText('zz-yy-xx');
 
         // id descending
-        spectator.click(spectator.$$(`${ table } th.sort-id`));
+        spectator.click(spectator.query(`${ table } th.sort-id`, {root: true})!);
 
         expect(`${ table } tr:first-child td:nth-of-type(1)`).toHaveText('3');
         expect(`${ table } tr:first-child td:nth-of-type(2)`).toHaveText('Other guy');
         expect(`${ table } tr:first-child td:nth-of-type(3)`).toHaveText('aa-bb-cc');
 
         // name ascending
-        spectator.click(spectator.$$(`${ table } th.sort-name`));
+        spectator.click(spectator.query(`${ table } th.sort-name`, {root: true})!);
 
         expect(`${ table } tr:first-child td:nth-of-type(1)`).toHaveText('2');
         expect(`${ table } tr:first-child td:nth-of-type(2)`).toHaveText('Adam');
         expect(`${ table } tr:first-child td:nth-of-type(3)`).toHaveText('yy-zz-xx');
 
         // name descending
-        spectator.click(spectator.$$(`${ table } th.sort-name`));
+        spectator.click(spectator.query(`${ table } th.sort-name`, {root: true})!);
 
         expect(`${ table } tr:first-child td:nth-of-type(1)`).toHaveText('3');
         expect(`${ table } tr:first-child td:nth-of-type(2)`).toHaveText('Other guy');
         expect(`${ table } tr:first-child td:nth-of-type(3)`).toHaveText('aa-bb-cc');
 
         // vehicle number ascending
-        spectator.click(spectator.$$(`${ table } th.sort-vehicle-nr`));
+        spectator.click(spectator.query(`${ table } th.sort-vehicle-nr`, {root: true})!);
 
         expect(`${ table } tr:first-child td:nth-of-type(1)`).toHaveText('3');
         expect(`${ table } tr:first-child td:nth-of-type(2)`).toHaveText('Other guy');
         expect(`${ table } tr:first-child td:nth-of-type(3)`).toHaveText('aa-bb-cc');
 
         // vehicle number descending
-        spectator.click(spectator.$$(`${ table } th.sort-vehicle-nr`));
+        spectator.click(spectator.query(`${ table } th.sort-vehicle-nr`, {root: true})!);
 
         expect(`${ table } tr:first-child td:nth-of-type(1)`).toHaveText('1');
         expect(`${ table } tr:first-child td:nth-of-type(2)`).toHaveText('John Doe');
@@ -110,7 +127,7 @@ describe('AppComponent', () => {
       it('should filter visible columns case-insensitive', () => {
         expect(`${ table } tr.row`).toHaveLength(3);
 
-        spectator.typeInElement('A', 'input');
+        spectator.typeInElement('A', `${ table } input`);
 
         expect(`${ table } tr:first-child td:nth-of-type(1)`).toHaveText('2');
         expect(`${ table } tr:first-child td:nth-of-type(2)`).toHaveText('Adam');
@@ -118,7 +135,7 @@ describe('AppComponent', () => {
 
         expect(`${ table } tr.row`).toHaveLength(2);
 
-        spectator.typeInElement('bb', 'input');
+        spectator.typeInElement('bb', `${ table } input`);
 
         expect(`${ table } tr:first-child td:nth-of-type(1)`).toHaveText('3');
         expect(`${ table } tr:first-child td:nth-of-type(2)`).toHaveText('Other guy');
@@ -126,6 +143,16 @@ describe('AppComponent', () => {
 
         expect(`${ table } tr.row`).toHaveLength(1);
       });
+    });
+  });
+
+  describe('app-generic-table', () => {
+    it('should have reload functionality', () => {
+      getDataSpy.calls.reset();
+
+      spectator.click('button');
+
+      expect(getDataSpy).toHaveBeenCalledTimes(1);
     });
   });
 });
