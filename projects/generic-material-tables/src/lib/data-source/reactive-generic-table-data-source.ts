@@ -1,7 +1,6 @@
 import { BehaviorSubject, Observable, Subscription } from 'rxjs';
 import { map, shareReplay, switchMap } from 'rxjs/operators';
 
-import { createGenericFilterPredicate } from '../filtering/generic-filter-predicate.fn';
 import { mapToLoadable } from '../internals/loading/map-to-loadable.operator';
 import { Loadable } from '../internals/loading/loadable';
 
@@ -58,7 +57,7 @@ export class ReactiveGenericTableDataSource<T> extends GenericTableDataSource<T>
         }
       }));
 
-    this.subscription.add(this.filterColumns$.subscribe((columns) => this.filterPredicate = createGenericFilterPredicate(columns)));
+    this.subscription.add(this.filterColumns$.subscribe((columns) => this.filterColumns = columns));
 
     if (this.filter$) {
       this.subscription.add(this.filter$.subscribe((filter) => this.filter = filter));

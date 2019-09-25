@@ -92,7 +92,7 @@ Use the `gmtApplyMatSort` to automatically register the `MatSort` on the data so
 </table>
 ```
 
-This allows you to omit the following code: 
+This allows you to leave out the following code: 
 
 ```typescript
 ViewChild(MatSort, {static: true}) sort: MatSort; // not needed anymore!
@@ -128,13 +128,36 @@ Even more awesome is the reactive version of the `GenericTableDataSource`:
 ```typescript
 import { ReactiveGenericTableDataSource } from '@dirkluijk/ngx-generic-material-tables'
 
-const myDataSource = new ReactiveGenericTableDataSource<YourRecordEntity>(
+const dataSource = new ReactiveGenericTableDataSource<YourRecordEntity>(
   displayedColumns$,
   yourTableData$,
   yourFilter$ // (optional)
 );
 
-myDataSource.reload();
+dataSource.reload();
+```
+
+### Custom filtering for specific columns / types
+
+If you still want to have custom filtering for a specific column, filter value or column value,
+you can pass a `ColumnFilterPredicate`:
+
+```typescript
+import { defaultColumnFilterPredicate } from '@dirkluijk/ngx-generic-material-tables';
+
+dataSource.columnFilterPredicate = (value, filter, columnName) => {
+   // exact filter for this column
+  if (columnName === 'vehicle.number') {
+    return value.trim().includes(filter);
+  }
+
+  // custom filter for number values
+  if (typeof value === 'number') {
+    return String(yourFormatFn(value)).includes(filter);
+  }
+
+  return defaultColumnFilterPredicate(value, filter, columnName); // use default predicate for other cases
+};
 ```
 
 ## Contributors ✨

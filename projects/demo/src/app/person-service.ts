@@ -9,6 +9,7 @@ export interface Person {
     id: string;
     number: string;
   };
+  budget: number;
 }
 
 @Injectable({ providedIn: 'root' })
@@ -21,7 +22,8 @@ export class PersonService {
         vehicle: {
           id: 'a',
           number: 'aa-bb-cc'
-        }
+        },
+        budget: 2000
       },
       {
         id: '2',
@@ -29,7 +31,8 @@ export class PersonService {
         vehicle: {
           id: 'b',
           number: 'zz-yy-xx'
-        }
+        },
+        budget: 4000
       }
     ]).pipe(
       // tslint:disable-next-line:no-console

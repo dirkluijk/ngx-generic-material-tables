@@ -4,12 +4,19 @@
  */
 import { readProperty } from '../internals/read-property.fn';
 
-export function createGenericFilterPredicate<T>(columns: Iterable<string>): ((data: T, filter: string) => boolean) {
-  return (data: T, filter: string): boolean => {
-    return Array.from(columns).some((column) => {
-      const value = readProperty(data, column);
+import { defaultColumnFilterPredicate } from './default-column-filter-predicate';
+import { DataSourceFilterPredicate } from './data-source-filter-predicate';
+import { ColumnFilterPredicate } from './column-filter-predicate';
 
-      return value !== undefined && String(value).trim().toLocaleLowerCase().includes(filter.toLowerCase());
+export function createGenericFilterPredicate<T>(
+  columns: Iterable<string>,
+  filterColumn: ColumnFilterPredicate = defaultColumnFilterPredicate
+): DataSourceFilterPredicate<T> {
+  return (data: T, filter: string): boolean => {
+    return Array.from(columns).some((columnName) => {
+      const value = readProperty(data, columnName);
+
+      return filterColumn(value, filter, columnName);
     });
   };
 }

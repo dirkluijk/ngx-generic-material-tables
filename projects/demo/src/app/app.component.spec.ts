@@ -45,7 +45,8 @@ describe('AppComponent', () => {
               vehicle: {
                 id: 'a',
                 number: 'zz-yy-xx'
-              }
+              },
+              budget: 2000
             },
             {
               id: '2',
@@ -53,7 +54,8 @@ describe('AppComponent', () => {
               vehicle: {
                 id: 'c',
                 number: 'yy-zz-xx'
-              }
+              },
+              budget: 2000
             },
             {
               id: '3',
@@ -61,7 +63,8 @@ describe('AppComponent', () => {
               vehicle: {
                 id: 'b',
                 number: 'aa-bb-cc'
-              }
+              },
+              budget: 4000
             }
           ]).pipe(tap(() => getDataSpy()))
         }
@@ -127,7 +130,7 @@ describe('AppComponent', () => {
       it('should filter visible columns case-insensitive', () => {
         expect(`${ table } tr.row`).toHaveLength(3);
 
-        spectator.typeInElement('A', `${ table } input`);
+        spectator.typeInElement('a', `${ table } input`);
 
         expect(`${ table } tr:first-child td:nth-of-type(1)`).toHaveText('2');
         expect(`${ table } tr:first-child td:nth-of-type(2)`).toHaveText('Adam');

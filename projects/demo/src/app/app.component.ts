@@ -5,7 +5,7 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
   template: `
     <h1 class="mat-headline">Generic Material tables</h1>
 
-    <h2 class="mat-title">Generic table data source</h2>
+    <h2 class="mat-title">Generic table data source (with custom filter predicate)</h2>
     <app-generic-table></app-generic-table>
 
     <h2 class="mat-title">Reactive table data source</h2>
