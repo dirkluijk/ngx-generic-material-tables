@@ -16,7 +16,7 @@ A small set of utils to make [Angular Material Tables](https://material.angular.
 * Sorting based on column names, with nested property support using dot notation
 * Filtering based on column names, with nested property support using dot notation
 * Sorts string values case-insensitive
-* Filter only on displayed columns 
+* Filter only on displayed columns (case-insensitive and trimming the filter string)
 * Persisted sorting using SessionStorage
 * Reactive data source for RxJS Observables
 * Reloading functionality (for reactive data sources)
